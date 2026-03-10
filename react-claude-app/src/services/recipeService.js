@@ -34,6 +34,12 @@ Guidelines:
       })
     })
 
+    // NEW: handle API failure gracefully
+    if (!response.ok) {
+      console.warn("OpenAI API returned error:", response.status)
+      return generateFallbackRecipe(ingredients)
+    }
+
     const data = await response.json()
 
     return data.choices[0].message.content
@@ -42,6 +48,30 @@ Guidelines:
 
     console.error("AI API error:", error)
 
-    return "Sorry, Chef Claude is having trouble generating a recipe right now."
+    return generateFallbackRecipe(ingredients)
   }
+}
+
+
+/* ---------- NEW FALLBACK GENERATOR ---------- */
+
+function generateFallbackRecipe(ingredients) {
+
+  const ingredientList = ingredients.map(i => `- ${i}`).join("\n")
+
+  return `
+⚠ AI unavailable — showing quick recipe suggestion
+
+### Ingredients
+${ingredientList}
+- Optional: salt, pepper, herbs
+
+### Instructions
+1. Prepare all ingredients and wash if necessary.
+2. Heat a pan on medium heat.
+3. Add the ingredients gradually while stirring.
+4. Cook for 10–15 minutes until the main ingredients are done.
+5. Season with optional salt, pepper, or herbs.
+6. Serve warm and enjoy your simple homemade dish.
+`
 }
