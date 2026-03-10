@@ -5,6 +5,12 @@ export default function Header() {
         <header>
             <img src={chefClaudeLogo} />
             <h1>Chef Claude</h1>
+            <button onClick={() => {
+  localStorage.removeItem("chef-auth")
+  window.location.reload()
+}}>
+Logout
+</button>
         </header>
     )
 }
