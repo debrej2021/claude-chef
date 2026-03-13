@@ -63,27 +63,39 @@ Format using markdown:
 
     const responses = []
 
-    if (gptRes.status === "fulfilled") {
-      const data = await gptRes.value.json()
-      const text = data?.choices?.[0]?.message?.content
+   if (gptRes.status === "fulfilled") {
 
-      console.log("GPT returned:", text?.slice(0, 50))
+  const data = await gptRes.value.json()
 
-      if (text) {
-        responses.push({ model: "gpt", text })
-      }
-    }
+  console.log("GPT raw response:", data)
+
+  const text = data?.choices?.[0]?.message?.content
+
+  if (text) {
+    responses.push({
+      model: "gpt",
+      text
+    })
+  }
+
+}
 
     if (claudeRes.status === "fulfilled") {
-      const data = await claudeRes.value.json()
-      const text = data?.content?.[0]?.text
 
-      console.log("Claude returned:", text?.slice(0, 50))
+  const data = await claudeRes.value.json()
 
-      if (text) {
-        responses.push({ model: "claude", text })
-      }
-    }
+  console.log("Claude raw response:", data)
+
+  const text = data?.content?.[0]?.text
+
+  if (text) {
+    responses.push({
+      model: "claude",
+      text
+    })
+  }
+
+}
 
     return res.status(200).json({ answers: responses })
 
