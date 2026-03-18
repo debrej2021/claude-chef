@@ -3,8 +3,9 @@ node_modules/
 
 # environment variables
 .env
-.env.local
-.env.*.local
+.env*.local
+.env.production
+.env.development
 
 # build output
 dist/
@@ -25,4 +26,3 @@ Thumbs.db
 
 # Vercel
 .vercel
-.env*.local
