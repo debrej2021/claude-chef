@@ -1,16 +1,35 @@
-# React + Vite
+# Claude Chef
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Claude Chef is a small AI-assisted recipe app that turns a short list of ingredients into a usable recipe. The goal of the project is to keep the experience simple: enter what is available, send it to the model, and return a response that is readable enough to cook from without extra cleanup.
 
-Currently, two official plugins are available:
+The project is built as a lightweight frontend application and is deployed on Vercel. Environment variables for deployed environments are managed through Vercel rather than committed to the repository.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Why this project exists
 
-## React Compiler
+A lot of recipe apps assume the user already knows what they want to cook. This project starts from the opposite direction. The input is a handful of ingredients, and the application uses an LLM to suggest a practical dish based on what is already available.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+It is intentionally small in scope, but structured in a way that makes it easy to extend with validation, saved recipes, better prompt design, or support for multiple providers.
 
-## Expanding the ESLint configuration
+## What it does
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Accepts a list of ingredients from the user
+- Sends the ingredient list to an AI model
+- Returns a recipe suggestion in a readable format
+- Runs as a frontend app with Vercel-based deployment
+
+## Tech stack
+
+- React
+- Vite
+- JavaScript
+- Vercel for deployment
+
+Update this section if your repo uses any additional tools such as Tailwind, serverless functions, or a separate API layer.
+
+## Getting started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/debrej2021/claude-chef.git
+cd claude-chef
